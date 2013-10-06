@@ -5,7 +5,6 @@
 package com.sagedevices.dropwizard.vertx;
 
 import com.codahale.metrics.health.HealthCheck;
-import com.google.common.base.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.vertx.java.core.Handler;
@@ -19,11 +18,11 @@ public class VerticleHealthCheck extends HealthCheck {
 
     private static final Logger logger = LoggerFactory.getLogger(VerticleHealthCheck.class);
 
-    public static String getHealthCheckAddress(VerticleBase verticle) {
+    public static String getHealthCheckAddress(DropwizardVerticle verticle) {
         return getHealthCheckAddress(verticle.getName());
     }
 
-    public static String getHealthCheckAddress(Class<? extends VerticleBase> clazz) {
+    public static String getHealthCheckAddress(Class<? extends DropwizardVerticle> clazz) {
         return getHealthCheckAddress(clazz.getName());
     }
 
@@ -35,7 +34,7 @@ public class VerticleHealthCheck extends HealthCheck {
     private final String eventBusAddress;
     private final BlockingQueue<Boolean> queue;
 
-    public VerticleHealthCheck(Class<? extends VerticleBase> verticleClass, Vertx vertx) {
+    public VerticleHealthCheck(Class<? extends DropwizardVerticle> verticleClass, Vertx vertx) {
         this.queue = new ArrayBlockingQueue<>(4);
         this.vertx = vertx;
         eventBusAddress = getHealthCheckAddress(verticleClass);

@@ -75,10 +75,10 @@
         <tag>HEAD</tag>
     </scm>
 
-    <!--<issueManagement>-->
-        <!--<system>github</system>-->
-        <!--<url>http://github.com/codahale/dropwizard/issues#issue/</url>-->
-    <!--</issueManagement>-->
+    <issueManagement>
+        <system>github</system>
+        <url>http://github.com/sagedevices/dropwizard-sage</url>
+    </issueManagement>
 
     <repositories>
         <repository>

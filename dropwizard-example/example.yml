@@ -61,7 +61,7 @@ logging:
 
     # Sets the level for 'com.example.app' to DEBUG.
     com.example.app: DEBUG
-
+    com.sagedevices: DEBUG
     org.hibernate.SQL: ALL
 
   appenders:

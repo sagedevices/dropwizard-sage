@@ -37,31 +37,31 @@ public class VerticleDeployer {
         isStarted = false;
     }
 
-    public void add(Class<? extends VerticleBase> verticle) {
+    public void add(Class<? extends DropwizardVerticle> verticle) {
         add(verticle, 1, null, false);
     }
 
-    public void addWorker(Class<? extends VerticleBase> verticle) {
+    public void addWorker(Class<? extends DropwizardVerticle> verticle) {
         add(verticle, 1, null, true);
     }
 
-    public void add(Class<? extends VerticleBase> verticle, JsonObject config) {
+    public void add(Class<? extends DropwizardVerticle> verticle, JsonObject config) {
         add(verticle, 1, config, false);
     }
 
-    public void addWorker(Class<? extends VerticleBase> verticle, JsonObject config) {
+    public void addWorker(Class<? extends DropwizardVerticle> verticle, JsonObject config) {
         add(verticle, 1, config, true);
     }
 
-    public void add(Class<? extends VerticleBase> verticle, int instances, JsonObject config) {
+    public void add(Class<? extends DropwizardVerticle> verticle, int instances, JsonObject config) {
         add(verticle, instances, config, false);
     }
 
-    public void addWorker(Class<? extends VerticleBase> verticle, int instances, JsonObject config) {
+    public void addWorker(Class<? extends DropwizardVerticle> verticle, int instances, JsonObject config) {
         add(verticle, instances, config, true);
     }
 
-    private synchronized void add(Class<? extends VerticleBase> verticle, int instances, JsonObject config, boolean isWorker) {
+    private synchronized void add(Class<? extends DropwizardVerticle> verticle, int instances, JsonObject config, boolean isWorker) {
         if (!isStarted) {
             verticles.add(new VerticleDescriptor(verticle, instances, config, isWorker));
         }
@@ -137,11 +137,11 @@ public class VerticleDeployer {
 
         private boolean isWorker;
         private int instances;
-        private Class<? extends VerticleBase> verticle;
+        private Class<? extends DropwizardVerticle> verticle;
         private JsonObject config;
         private AsyncResult<String> result;
 
-        protected VerticleDescriptor(Class<? extends VerticleBase> verticle, int instances, JsonObject config, boolean isWorker) {
+        protected VerticleDescriptor(Class<? extends DropwizardVerticle> verticle, int instances, JsonObject config, boolean isWorker) {
             this.verticle = verticle;
             this.instances = instances;
             this.config = config;

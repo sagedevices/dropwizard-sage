@@ -20,7 +20,7 @@ import org.vertx.java.platform.PlatformManager;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-public class VertxManager<T extends VertxApplicationConfigurationBase> implements Managed {
+public class VertxManager<T extends VertxConfigurationProvider> implements Managed {
 
     private static final Logger logger = LoggerFactory.getLogger(VertxManager.class);
 
@@ -105,37 +105,37 @@ public class VertxManager<T extends VertxApplicationConfigurationBase> implement
         }
     }
 
-    public void addVerticle(Class<? extends VerticleBase> verticle, Environment environment) {
+    public void addVerticle(Class<? extends DropwizardVerticle> verticle, Environment environment) {
         verticleDeployer.add(verticle);
         addHealthCheck(verticle, environment);
     }
 
-    public void addWorkerVerticle(Class<? extends VerticleBase> verticle, Environment environment) {
+    public void addWorkerVerticle(Class<? extends DropwizardVerticle> verticle, Environment environment) {
         verticleDeployer.addWorker(verticle);
         addHealthCheck(verticle, environment);
     }
 
-    public void addVerticle(Class<? extends VerticleBase> verticle, VerticleConfiguration config, Environment environment) {
+    public void addVerticle(Class<? extends DropwizardVerticle> verticle, VerticleConfiguration config, Environment environment) {
         verticleDeployer.add(verticle, config.getInstances(), config.toJson());
         addHealthCheck(verticle, environment);
     }
 
-    public void addWorkerVerticle(Class<? extends VerticleBase> verticle, VerticleConfiguration config, Environment environment) {
+    public void addWorkerVerticle(Class<? extends DropwizardVerticle> verticle, VerticleConfiguration config, Environment environment) {
         verticleDeployer.addWorker(verticle, config.getInstances(), config.toJson());
         addHealthCheck(verticle, environment);
     }
 
-    public void addVerticle(Class<? extends VerticleBase> verticle, int instances, VerticleConfiguration config, Environment environment) {
+    public void addVerticle(Class<? extends DropwizardVerticle> verticle, int instances, VerticleConfiguration config, Environment environment) {
         verticleDeployer.add(verticle, instances, config.toJson());
         addHealthCheck(verticle, environment);
     }
 
-    public void addWorkerVerticle(Class<? extends VerticleBase> verticle, int instances, VerticleConfiguration config, Environment environment) {
+    public void addWorkerVerticle(Class<? extends DropwizardVerticle> verticle, int instances, VerticleConfiguration config, Environment environment) {
         verticleDeployer.addWorker(verticle, instances, config.toJson());
         addHealthCheck(verticle, environment);
     }
 
-    protected void addHealthCheck(Class<? extends VerticleBase> verticle, Environment environment) {
+    protected void addHealthCheck(Class<? extends DropwizardVerticle> verticle, Environment environment) {
         environment.healthChecks().register(verticle.getSimpleName(), new VerticleHealthCheck(verticle, getVertx()));
     }
 

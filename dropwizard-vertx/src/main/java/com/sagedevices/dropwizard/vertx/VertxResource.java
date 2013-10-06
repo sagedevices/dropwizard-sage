@@ -7,7 +7,7 @@ package com.sagedevices.dropwizard.vertx;
 import org.vertx.java.core.Vertx;
 import org.vertx.java.core.eventbus.EventBus;
 
-public class VertxResource<T extends SharedObjectBundle> {
+public abstract class VertxResource<T extends SharedObjectBundle> {
 
     private final VertxManager vertxManager;
 

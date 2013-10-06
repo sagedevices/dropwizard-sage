@@ -2,6 +2,8 @@ package com.example.helloworld;
 
 import com.example.helloworld.core.Template;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sagedevices.dropwizard.vertx.VertxConfiguration;
+import com.sagedevices.dropwizard.vertx.VertxConfigurationProvider;
 import io.dropwizard.Configuration;
 import io.dropwizard.db.DataSourceFactory;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -9,7 +11,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-public class HelloWorldConfiguration extends Configuration {
+public class HelloWorldConfiguration extends Configuration implements VertxConfigurationProvider {
     @NotEmpty
     private String template;
 
@@ -53,4 +55,12 @@ public class HelloWorldConfiguration extends Configuration {
     public void setDataSourceFactory(DataSourceFactory dataSourceFactory) {
         this.database = dataSourceFactory;
     }
+
+    @JsonProperty
+    private VertxConfiguration vertx = new VertxConfiguration();
+
+    public VertxConfiguration getVertx() {
+        return vertx;
+    }
+
 }

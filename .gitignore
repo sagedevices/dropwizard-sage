@@ -1,10 +1,27 @@
+# Maven build output
+target/
 *.class
 
-# Package Files #
+# Package files
 *.jar
 *.war
 *.ear
 
-# IntelliJ
-*.iml
-.idea/
+# IntelliJ files
+.idea/tasks.xml
+.idea/workspace.xml
+
+# Mac
+.DS_Store
+
+# Windows
+Thumbs.db
+Icon?
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+.vagrant
+
